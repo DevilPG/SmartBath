@@ -1,0 +1,52 @@
+{% extends 'home.html'%}
+{% block content %}
+<div class="panel-body panel-success">书籍信息</div>
+    <div class="panel-footer">
+                    <table class="table-hover table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>price</th>
+                                <th>author</th>
+                                <th>publish</th>
+                                <th>publish_time</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for book_obj in all_book %}
+                            <tr>
+                                <td>{{ book_obj.id }}</td>
+                                <td>{{ book_obj.name }}</td>
+                                <td>{{ book_obj.price }}</td>
+                                <td>
+                                    {% for author in book_obj.author.all %}
+                                        {% if forloop.last %}
+                                            {{ author.name }}
+                                        {% else %}
+                                            {{ author.name }} |
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ book_obj.publish.name }}</td>
+                                <td>{{ book_obj.publish_time|date:'Y-m-d' }}</td>
+                                <td>
+                                    <a href="{% url 'book_edit' book_obj.id  %}" class="btn btn-info btn-xs">edit</a>
+                                    <a href="{% url 'book_del' book_obj.id %}" class="btn btn-danger btn-xs">del</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <a href="/add/" class="btn btn-primary">添加书籍</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

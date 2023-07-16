@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block content %}
+    <div class="panel-body panel-success">增加书籍</div>
+        <div class="panel-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <form action=""  method="post">
+                        {% csrf_token %}
+                            name: <input type="text" class="form-control" name="name">
+                            price: <input type="text" class="form-control" name="price">
+                            author: <select name="author" id="" multiple class="form-control" name="author">
+                                        {% for author_obj in all_author %}
+                                            <option value="{{ author_obj.id }}">{{ author_obj.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                            publish: <select name="publish" id="" class="form-control" name="publish">
+                                            {% for publish_obj in all_publish %}
+                                                <option value="{{ publish_obj.id }}">{{ publish_obj.name }}</option>
+                                            {% endfor %}
+                                     </select>
+                            publish_time: <input type="date" class="form-control" name="publish_time">
+                            <br>
+                            <input type="submit" value="添加" class="btn btn-info">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

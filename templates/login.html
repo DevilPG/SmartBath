@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="panel-body panel-success">登陆</div>
+<div class="panel-footer">
+     <div class="jumbotron">
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-md-8 col-md-offset-2">
+                     <form action="" method="post">
+                         {% csrf_token %}
+             username: <input type="text" class="form-control" name="username">
+             password: <input type="text" class="form-control" name="password">
+             <br>
+             <br>
+             <br>
+             <div class="container-fluid">
+                 <div class="row">
+                     <div class="col-md-8 col-md-offset-2">
+                         <input type="submit" value="登陆" class="btn btn-success">
+                         <a href="/reg/" class="btn btn-danger">还没有账号？请点击</a>
+                     </div>
+                 </div>
+             </div>
+         </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+{% endblock %}
